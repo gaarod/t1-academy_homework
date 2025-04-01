@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: task-tracker
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/task-tracker}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
+  liquibase:
+    enabled: true
+    change-log: db/changelog/db.changelog-master.yaml
+    contexts: ddl
+springdoc:
+  swagger-ui:
+    enabled: true

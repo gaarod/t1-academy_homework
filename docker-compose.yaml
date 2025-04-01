@@ -1,0 +1,11 @@
+version: '3.2'
+services:
+  postgres:
+    image: bitnami/postgresql:16.3.0
+    container_name:  task-tracker-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: task-tracker
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
