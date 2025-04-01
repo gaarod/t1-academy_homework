@@ -1,5 +1,9 @@
 package org.t1academy.tasktracker.service.impl;
 
+import org.t1academy.tasktracker.aspect.annotation.HandlingResult;
+import org.t1academy.tasktracker.aspect.annotation.LogException;
+import org.t1academy.tasktracker.aspect.annotation.LogExecution;
+import org.t1academy.tasktracker.aspect.annotation.LogTracking;
 import org.t1academy.tasktracker.dto.TaskDto;
 import org.t1academy.tasktracker.entity.Task;
 import org.t1academy.tasktracker.exception.AppException;
@@ -20,6 +24,10 @@ public class TaskServiceImpl implements TaskService {
     private final TaskMapper taskMapper;
 
 
+    @HandlingResult
+    @LogException
+    @LogExecution
+    @LogTracking
     @Override
     public TaskDto getTaskById(Long id) {
         Task task = taskRepository.findById(id)
@@ -30,6 +38,10 @@ public class TaskServiceImpl implements TaskService {
         return taskMapper.toDto(task);
     }
 
+    @HandlingResult
+    @LogException
+    @LogExecution
+    @LogTracking
     @Override
     public List<TaskDto> getAllTasks() {
         List<Task> tasks = taskRepository.findAll();
@@ -39,6 +51,10 @@ public class TaskServiceImpl implements TaskService {
                 .toList();
     }
 
+    @HandlingResult
+    @LogException
+    @LogExecution
+    @LogTracking
     @Override
     public TaskDto createTask(TaskDto taskDto) {
         Task task = taskMapper.toEntity(taskDto);
@@ -47,6 +63,10 @@ public class TaskServiceImpl implements TaskService {
         return taskMapper.toDto(savedTask);
     }
 
+    @HandlingResult
+    @LogException
+    @LogExecution
+    @LogTracking
     @Override
     public TaskDto updateTask(Long id, TaskDto taskDto) {
         Task task = taskRepository.findById(id)
@@ -62,6 +82,10 @@ public class TaskServiceImpl implements TaskService {
         return taskMapper.toDto(savedTask);
     }
 
+    @HandlingResult
+    @LogException
+    @LogExecution
+    @LogTracking
     @Override
     public void deleteTaskById(Long id) {
         if (taskRepository.existsById(id)) {

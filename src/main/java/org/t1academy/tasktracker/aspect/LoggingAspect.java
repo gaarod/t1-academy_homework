@@ -12,6 +12,7 @@ import java.util.Arrays;
 @Component
 @Slf4j
 public class LoggingAspect {
+
     @Before("@annotation(org.t1academy.tasktracker.aspect.annotation.LogExecution)")
     public void loggingBefore(JoinPoint joinPoint) {
         log.info("Executing method: {} with parameter {}",
