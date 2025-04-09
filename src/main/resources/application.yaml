@@ -6,6 +6,19 @@ spring:
     url: ${DB_URL:jdbc:postgresql://localhost:5432/task-tracker}
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:postgres}
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    test-connection: true
   liquibase:
     enabled: true
     change-log: db/changelog/db.changelog-master.yaml
@@ -13,3 +26,21 @@ spring:
 springdoc:
   swagger-ui:
     enabled: true
+
+app:
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      topic: ${KAFKA_CONSUMER_TOPIC:task-notification-topic}
+      group-id: ${KAFKA_CONSUMER_GROUP_ID:task-consumer-group}
+      session-timeout: ${KAFKA_SESSION_TIMEOUT:15000}
+      max-partition-fetch-bytes: ${KAFKA_MAX_PARTITION_FETCH_BYTES:300000}
+      max-poll-records: ${KAFKA_MAX_POLL_RECORDS:1}
+      max-poll-interval: ${KAFKA_MAX_POLL_INTERVAL:100000}
+      auto-offset-reset: ${KAFKA_AUTO_OFFSET_RESET:earliest}
+    producer:
+      topic: ${KAFKA_PRODUCER_TOPIC:task-notification-topic}
+  notification:
+    mail:
+      fromAddress: ${NOTIFICATION_FROM_EMAIL}
+      toAddress: ${NOTIFICATION_TO_EMAIL}

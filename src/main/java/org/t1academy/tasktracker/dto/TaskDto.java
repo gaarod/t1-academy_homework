@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.t1academy.tasktracker.entity.TaskStatus;
 
 @Getter
 @Setter
@@ -18,4 +19,5 @@ public class TaskDto {
     private String title;
     private String description;
     private Long userId;
+    private TaskStatus status;
 }
