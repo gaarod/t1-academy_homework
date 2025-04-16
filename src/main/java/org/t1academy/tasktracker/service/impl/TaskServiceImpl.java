@@ -5,13 +5,16 @@ import org.t1academy.tasktracker.aspect.annotation.LogException;
 import org.t1academy.tasktracker.aspect.annotation.LogExecution;
 import org.t1academy.tasktracker.aspect.annotation.LogTracking;
 import org.t1academy.tasktracker.dto.TaskDto;
+import org.t1academy.tasktracker.dto.TaskNotificationDto;
 import org.t1academy.tasktracker.entity.Task;
+import org.t1academy.tasktracker.entity.TaskStatus;
 import org.t1academy.tasktracker.exception.AppException;
 import lombok.RequiredArgsConstructor;
 import org.t1academy.tasktracker.mapper.TaskMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.t1academy.tasktracker.repository.TaskRepository;
+import org.t1academy.tasktracker.service.TaskStatusProducer;
 import org.t1academy.tasktracker.service.TaskService;
 
 import java.util.List;
@@ -22,6 +25,7 @@ public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepository;
     private final TaskMapper taskMapper;
+    private final TaskStatusProducer taskStatusProducer;
 
 
     @HandlingResult
@@ -73,11 +77,17 @@ public class TaskServiceImpl implements TaskService {
                 .orElseThrow(
                         () -> new AppException("Task not found", HttpStatus.NOT_FOUND)
                 );
+        TaskStatus oldStatus = task.getStatus();
 
         task.setTitle(taskDto.getTitle());
         task.setDescription(taskDto.getDescription());
         task.setUserId(taskDto.getUserId());
+        task.setStatus(taskDto.getStatus());
         Task savedTask = taskRepository.save(task);
+
+        if (oldStatus != savedTask.getStatus()) {
+            taskStatusProducer.sendTaskStatusUpdate(new TaskNotificationDto(id, savedTask.getStatus()));
+        }
 
         return taskMapper.toDto(savedTask);
     }
