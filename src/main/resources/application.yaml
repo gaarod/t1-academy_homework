@@ -44,3 +44,8 @@ app:
     mail:
       fromAddress: ${NOTIFICATION_FROM_EMAIL}
       toAddress: ${NOTIFICATION_TO_EMAIL}
+
+logging:
+  starter:
+    enable: true
+    level: info

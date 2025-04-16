@@ -7,7 +7,7 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import org.t1academy.tasktracker.aspect.annotation.LogException;
+import org.t1academy.logstarter.aspect.annotation.LogException;
 import org.t1academy.tasktracker.dto.TaskNotificationDto;
 import org.t1academy.tasktracker.service.NotificationService;
 
