@@ -1,9 +1,9 @@
 package org.t1academy.tasktracker.service.impl;
 
-import org.t1academy.tasktracker.aspect.annotation.HandlingResult;
-import org.t1academy.tasktracker.aspect.annotation.LogException;
-import org.t1academy.tasktracker.aspect.annotation.LogExecution;
-import org.t1academy.tasktracker.aspect.annotation.LogTracking;
+import org.t1academy.logstarter.aspect.annotation.HandlingResult;
+import org.t1academy.logstarter.aspect.annotation.LogException;
+import org.t1academy.logstarter.aspect.annotation.LogExecution;
+import org.t1academy.logstarter.aspect.annotation.LogTracking;
 import org.t1academy.tasktracker.dto.TaskDto;
 import org.t1academy.tasktracker.dto.TaskNotificationDto;
 import org.t1academy.tasktracker.entity.Task;
