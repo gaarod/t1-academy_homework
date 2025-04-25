@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "tasks")
 @Getter
@@ -24,4 +26,16 @@ public class Task {
     private Long userId;
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return Objects.equals(id, task.id) && Objects.equals(title, task.title) && Objects.equals(description, task.description) && Objects.equals(userId, task.userId) && status == task.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, description, userId, status);
+    }
 }
