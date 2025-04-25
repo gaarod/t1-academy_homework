@@ -1,0 +1,9 @@
+spring:
+  mail:
+    test-connection: false
+
+app:
+  notification:
+    mail:
+      fromAddress: email@mail.ru
+      toAddress: email@mail.ru

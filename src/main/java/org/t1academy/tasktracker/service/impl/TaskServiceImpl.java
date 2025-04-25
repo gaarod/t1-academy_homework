@@ -29,9 +29,7 @@ public class TaskServiceImpl implements TaskService {
 
 
     @HandlingResult
-    @LogException
     @LogExecution
-    @LogTracking
     @Override
     public TaskDto getTaskById(Long id) {
         Task task = taskRepository.findById(id)
@@ -43,9 +41,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @HandlingResult
-    @LogException
     @LogExecution
-    @LogTracking
     @Override
     public List<TaskDto> getAllTasks() {
         List<Task> tasks = taskRepository.findAll();
@@ -56,9 +52,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @HandlingResult
-    @LogException
     @LogExecution
-    @LogTracking
     @Override
     public TaskDto createTask(TaskDto taskDto) {
         Task task = taskMapper.toEntity(taskDto);
@@ -68,9 +62,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @HandlingResult
-    @LogException
     @LogExecution
-    @LogTracking
     @Override
     public TaskDto updateTask(Long id, TaskDto taskDto) {
         Task task = taskRepository.findById(id)
@@ -93,9 +85,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @HandlingResult
-    @LogException
     @LogExecution
-    @LogTracking
     @Override
     public void deleteTaskById(Long id) {
         if (taskRepository.existsById(id)) {
